@@ -1,0 +1,19 @@
+#!/bin/sh
+
+LFS=${LFS:-/mnt/lfs}
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+[ -d $LFS/sources ] || mkdir -vp $LFS/sources
+
+pushd $LFS/sources
+
+wget -cq --show-progress http://www.linuxfromscratch.org/lfs/view/stable/wget-list
+wget -cq --show-progress http://www.linuxfromscratch.org/lfs/view/stable/md5sums
+wget -cq --show-progress --input-file=wget-list
+md5sum -c md5sums
+
+popd

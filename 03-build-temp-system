@@ -1,0 +1,75 @@
+#!/bin/sh
+
+LFS=${LFS:-/mnt/lfs}
+
+if [ `whoami` != "lfs" ]
+  then echo "Please run as lfs"
+  exit
+fi
+
+function _run_package_install {
+	local dir="$1"
+	local file="$2"
+	local script="$3"
+
+	tar -xf "$file" || return 1
+	pushd "$dir" || return 1
+	"$script"
+	local res=$?
+	popd
+
+	[ $res -eq 0 ] || exit 1
+
+	rm -rf "$dir"
+}
+
+function run_package_install {
+	local archive="$1"
+	local dir="$2"
+	local script=`realpath tmp/$3.sh`
+
+	if [ -e $LFS/progress/$3 ]; then return 0; fi
+
+	pushd $LFS/sources
+	_run_package_install $dir $archive $script
+	local res=$?
+	popd
+
+	touch $LFS/progress/$3
+
+	[ $res -eq 0 ] || exit 1
+}
+
+run_package_install "binutils-2.32.tar.xz"    "binutils-2.32"    "binutils-pass1"
+run_package_install "gcc-8.2.0.tar.xz"        "gcc-8.2.0"        "gcc-pass1"
+run_package_install "linux-4.20.12.tar.xz"    "linux-4.20.12"    "linux-headers"
+run_package_install "glibc-2.29.tar.xz"       "glibc-2.29"       "glibc"
+run_package_install "gcc-8.2.0.tar.xz"        "gcc-8.2.0"        "libstdc++"
+run_package_install "binutils-2.32.tar.xz"    "binutils-2.32"    "binutils-pass2"
+run_package_install "gcc-8.2.0.tar.xz"        "gcc-8.2.0"        "gcc-pass2"
+run_package_install "tcl8.6.9-src.tar.gz"     "tcl8.6.9"         "tcl"
+run_package_install "expect5.45.4.tar.gz"     "expect5.45.4"     "expect"
+run_package_install "dejagnu-1.6.2.tar.gz"    "dejagnu-1.6.2"    "dejagnu"
+run_package_install "m4-1.4.18.tar.xz"        "m4-1.4.18"        "m4"
+run_package_install "ncurses-6.1.tar.gz"      "ncurses-6.1"      "ncurses"
+run_package_install "bash-5.0.tar.gz"         "bash-5.0"         "bash"
+run_package_install "bison-3.3.2.tar.xz"      "bison-3.3.2"      "bison"
+run_package_install "bzip2-1.0.6.tar.gz"      "bzip2-1.0.6"      "bzip"
+run_package_install "coreutils-8.30.tar.xz"   "coreutils-8.30"   "coreutils"
+run_package_install "diffutils-3.7.tar.xz"    "diffutils-3.7"    "diffutils"
+run_package_install "file-5.36.tar.gz"        "file-5.36"        "file"
+run_package_install "findutils-4.6.0.tar.gz"  "findutils-4.6.0"  "findutils"
+run_package_install "gawk-4.2.1.tar.xz"       "gawk-4.2.1"       "gawk"
+run_package_install "gettext-0.19.8.1.tar.xz" "gettext-0.19.8.1" "gettext"
+run_package_install "grep-3.3.tar.xz"         "grep-3.3"         "grep"
+run_package_install "gzip-1.10.tar.xz"        "gzip-1.10"        "gzip"
+run_package_install "make-4.2.1.tar.bz2"      "make-4.2.1"       "make"
+run_package_install "patch-2.7.6.tar.xz"      "patch-2.7.6"      "patch"
+run_package_install "perl-5.28.1.tar.xz"      "perl-5.28.1"      "perl"
+run_package_install "Python-3.7.2.tar.xz"     "Python-3.7.2"     "python"
+run_package_install "sed-4.7.tar.xz"          "sed-4.7"          "sed"
+run_package_install "tar-1.31.tar.xz"         "tar-1.31"         "tar"
+run_package_install "texinfo-6.5.tar.xz"      "texinfo-6.5"      "texinfo"
+run_package_install "xz-5.2.4.tar.xz"         "xz-5.2.4"         "xz"
+
+

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+LFS=${LFS:-/mnt/lfs}
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+[ -d $LFS/tools ] || mkdir -vp $LFS/tools
+[ -d $LFS/progress ] || mkdir -vp $LFS/progress
+ln -svf $LFS/tools /
+
+if ! id -u lfs &>/dev/null; then
+	useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+	passwd lfs
+fi
+
+chown -v lfs $LFS/tools
+chown -v lfs $LFS/sources
+chown -v lfs $LFS/progress
+
+
+
