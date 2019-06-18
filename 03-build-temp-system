@@ -71,5 +71,6 @@ run_package_install "sed-4.7.tar.xz"          "sed-4.7"          "sed"
 run_package_install "tar-1.31.tar.xz"         "tar-1.31"         "tar"
 run_package_install "texinfo-6.5.tar.xz"      "texinfo-6.5"      "texinfo"
 run_package_install "xz-5.2.4.tar.xz"         "xz-5.2.4"         "xz"
+run_package_install "shadow-4.6.tar.xz"	      "shadow-4.6"	 "shadow"
 
 
