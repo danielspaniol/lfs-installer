@@ -11,11 +11,11 @@ if [ `whoami` != "lfs" ]
   exit
 fi
 
-cat > ~/.bash_profile << "EOF"
+cat > ~lfs/.bash_profile << "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
 
-cat > ~/.bashrc << "EOF"
+cat > ~lfs/.bashrc << "EOF"
 set +h
 umask 022
 LFS=/mnt/lfs
@@ -25,6 +25,4 @@ PATH=/tools/bin:/bin:/usr/bin
 MAKEFLAGS='-j 5'
 export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
-
-source ~/.bash_profile
 
