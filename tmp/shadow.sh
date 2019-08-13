@@ -12,7 +12,7 @@ sed -i 's/1000/999/' etc/useradd
 
 ./configure --prefix=/tools --with-group-name-max-length=32
 
-make || exit 1
+make 
 
 cp src/su /tools/bin
 

@@ -10,6 +10,6 @@ cd       build
       --enable-kernel=3.2                \
       --with-headers=/tools/include
 
-make -j1 || exit 1
-make install || exit 1
+make -j1 
+make install 
 

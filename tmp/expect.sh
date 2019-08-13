@@ -7,6 +7,6 @@ sed 's:/usr/local/bin:/bin:' configure.orig > configure
             --with-tcl=/tools/lib \
             --with-tclinclude=/tools/include
 
-make || exit 1
-make SCRIPTS="" install || exit 1
+make 
+make SCRIPTS="" install 
 

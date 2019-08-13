@@ -12,5 +12,5 @@ cd       build
     --disable-libstdcxx-pch         \
     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/8.2.0
 
-make || exit 1
-make install || exit 1
+make 
+make install 
