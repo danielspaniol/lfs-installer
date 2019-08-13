@@ -18,6 +18,8 @@ The next step is to further prepare the system as `lfs` and then to build the te
 
     su lfs
     ./02-prepare-temp-system-2
+    source ~/.bash_profile
+    source ~/.bashrc
     ./03-build-temp-system
     
 Afterwards the temp-system is set up correctly.
