@@ -46,3 +46,10 @@ You can (while still in the `chroot`) change the "I have no name!" to the correc
 
     exec /tools/bin/bash --login +h
 
+Now you need to install the packages. Currently there is no script to install all of them for you, so you have to do it.
+Remeber to run these commands while still in the `chroot`.
+While installing the packages you will often switch to the package user account.
+
+    cd /usr/pkg/linux-4.20.12 ; make with-local-sources
+    make install && exit
+
