@@ -94,12 +94,15 @@ cp /tools/more_control_helpers/bin/* /usr/bin
 cp /tools/more_control_helpers/sbin/* /usr/sbin
 rm /usr/sbin/{useradd,groupadd}
 
-echo '/usr/include' >> /tools/more_control_helpers/installdirs.lst
 groupadd -g 9999 install
 
 for d in $(cat /tools/more_control_helpers/installdirs.lst); do
 	[ -d $d ] || mkdir -vp $d
 done
+
+echo '/usr/include' >> /tools/more_control_helpers/installdirs.lst
+echo '/lib64' >> /tools/more_control_helpers/installdirs.lst
+echo '/lib32' >> /tools/more_control_helpers/installdirs.lst
 
 chown 0:9999 $(cat /tools/more_control_helpers/installdirs.lst)
 chmod ug=rwx,o=rxt $(cat /tools/more_control_helpers/installdirs.lst)
