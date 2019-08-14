@@ -53,3 +53,6 @@ While installing the packages you will often switch to the package user account.
     cd /usr/pkg/linux-4.20.12 ; make with-local-sources
     make install && exit
 
+    cd /usr/pkg/man-pages-4.16 ; make with-local-sources
+    make install && exit
+
