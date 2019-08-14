@@ -31,6 +31,7 @@ This also installs the helper tools for a user-based package-management.
     ./10-prepare-lfs-system
 
 Now you `chroot` into the lfs system (but make sure `LFS` is set).
+From there prepare the lfs system by creating the needed files and links.
 
     su
     chroot "$LFS" /tools/bin/env -i \
@@ -39,4 +40,9 @@ Now you `chroot` into the lfs system (but make sure `LFS` is set).
         PS1='(lfs chroot) \u:\w\$ ' \
         PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
         /tools/bin/bash --login +h
+    ./11-prepare-lfs-system-2
+
+You can (while still in the `chroot`) change the "I have no name!" to the correct prompt.
+
+    exec /tools/bin/bash --login +h
 
