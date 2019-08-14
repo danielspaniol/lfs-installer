@@ -23,8 +23,10 @@ The next step is to further prepare the system as `lfs` and then to build the te
     ./03-build-temp-system
     
 Afterwards the temp-system is set up correctly.
-You should then run the cleanup as `root`.
+You should then run the cleanup as `root` and prepare the system to `chroot` into it.
+This also installs the helper tools for a user-based package-management.
 
     su
     ./04-cleanup-temp-system
+    ./10-prepare-lfs-system
 
