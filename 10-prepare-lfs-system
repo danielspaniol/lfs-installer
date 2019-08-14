@@ -25,4 +25,5 @@ cp ./sbin/* /tools/bin
 popd
 
 cp 11-prepare-lfs-system-2 $LFS
+cp -r pkg $LFS/usr/pkg
 
