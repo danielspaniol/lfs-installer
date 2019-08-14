@@ -9,20 +9,20 @@ PKG_DIR=linux-4.20.12/
 
 all:
 	@echo "Creating the package user... "
-	@echo "Please run `make install` once you are the package user"
+	@echo 'Please run `make install` once you are the package user'
 	@mkdir -p $(PKG_HOME)
 	@cp Makefile $(PKG_HOME)
 	@cp install.sh $(PKG_HOME)
-	@install_package $(PKG_DESC) $(PKG_USER) $(PKG_USER) > /dev/null
+	@install_package $(PKG_DESC) $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
 
 with-local-sources:
 	@echo "Creating the package user... "
-	@echo "Please run `make install` once you are the package user"
+	@echo 'Please run `make install` once you are the package user'
 	@mkdir -p $(PKG_HOME)
 	@cp Makefile $(PKG_HOME)
 	@cp install.sh $(PKG_HOME)
 	@cp /sources/$(PKG_SRC) $(PKG_HOME)
-	@install_package 'Linux Headers' $(PKG_USER) $(PKG_USER) > /dev/null
+	@install_package 'Linux Headers' $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
 
 $(PKG_DIR): $(PKG_SRC)
 	@echo "Extracting... "
