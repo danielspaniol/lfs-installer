@@ -13,6 +13,7 @@ all:
 	@mkdir -p $(PKG_HOME)
 	@cp Makefile $(PKG_HOME)
 	@cp install.sh $(PKG_HOME)
+	@cp build.sh $(PKG_HOME)
 	@install_package $(PKG_DESC) $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
 
 with-local-sources:
@@ -21,6 +22,7 @@ with-local-sources:
 	@mkdir -p $(PKG_HOME)
 	@cp Makefile $(PKG_HOME)
 	@cp install.sh $(PKG_HOME)
+	@cp build.sh $(PKG_HOME)
 	@cp /sources/$(PKG_SRC) $(PKG_HOME)
 	@install_package $(PKG_DESC) $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
 
