@@ -1,6 +1,6 @@
 PKG_USER=linux-libc-headers
 PKG_HOME=/usr/src/$(PKG_USER)
-PKG_DESC='Linux Headers'
+PKG_DESC='The Linux API Headers (in linux-4.20.12.tar.xz) expose the kernel\'s API for use by Glibc.'
 PKG_SRC=linux-4.20.12.tar.xz 
 PKG_URL=https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.20.12.tar.xz
 PKG_DIR=linux-4.20.12/
@@ -22,7 +22,7 @@ with-local-sources:
 	@cp Makefile $(PKG_HOME)
 	@cp install.sh $(PKG_HOME)
 	@cp /sources/$(PKG_SRC) $(PKG_HOME)
-	@install_package 'Linux Headers' $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
+	@install_package $(PKG_DESC) $(PKG_USER) $(PKG_USER) || su $(PKG_USER)
 
 $(PKG_DIR): $(PKG_SRC)
 	@echo "Extracting... "
